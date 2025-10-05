@@ -16,7 +16,7 @@ Automated daily monitoring of arXiv papers with AI-powered summaries. Get notifi
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/arxiv-daily-digest.git
+git clone https://github.com/biterik/arxiv-daily-digest.git
 cd arxiv-daily-digest
 
 # Create conda environment
@@ -28,7 +28,7 @@ conda activate arxiv-digest
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/arxiv-daily-digest.git
+git clone https://github.com/biterik/arxiv-daily-digest.git
 cd arxiv-daily-digest
 
 # Create virtual environment
