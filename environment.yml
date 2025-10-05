@@ -1,0 +1,14 @@
+name: arxiv-digest
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.9
+  - pip
+  - pyyaml>=6.0
+  # Testing
+  - pytest>=7.4.0
+  - pytest-cov>=4.1.0
+  # Pip dependencies not available in conda
+  - pip:
+    - openai>=1.12.0

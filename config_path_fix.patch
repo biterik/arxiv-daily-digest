@@ -1,0 +1,39 @@
+--- a/src/main.py
++++ b/src/main.py
+@@ -18,6 +18,13 @@ def load_config(config_path: str = 'config.yml') -> Dict[str, Any]:
+     Returns:
+         Configuration dictionary
+     """
++    # If relative path, look in project root (parent of src/)
++    if not os.path.isabs(config_path):
++        # Get the directory containing this script
++        script_dir = Path(__file__).parent
++        # Look in parent directory (project root)
++        config_path = script_dir.parent / config_path
++    
+     try:
+         with open(config_path, 'r') as f:
+             config = yaml.safe_load(f)
+@@ -25,6 +32,7 @@ def load_config(config_path: str = 'config.yml') -> Dict[str, Any]:
+     except FileNotFoundError:
+         print(f"Error: Configuration file '{config_path}' not found")
++        print(f"Looking in: {os.path.abspath(config_path)}")
+         sys.exit(1)
+     except yaml.YAMLError as e:
+         print(f"Error parsing configuration file: {e}")
+@@ -109,9 +117,16 @@ def run_digest(config_path: str = 'config.yml', dry_run: bool = False) -> None:
+     print("Generating output...")
+     print(f"{'='*80}\n")
+     
++    # Make output path relative to project root
++    output_file = config['output']['output_file']
++    if not os.path.isabs(output_file):
++        script_dir = Path(__file__).parent
++        output_file = script_dir.parent / output_file
++    
+     notifier = DigestNotifier(
+         output_format=config['output']['format'],
+-        output_file=config['output']['output_file'],
++        output_file=str(output_file),
+         include_abstract=config['output']['include_abstract']
+     )

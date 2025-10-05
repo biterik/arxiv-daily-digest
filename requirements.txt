@@ -1,0 +1,11 @@
+# arXiv Daily Digest Requirements
+# Copyright (c) 2025 Erik Bitzek
+# Licensed under GNU AGPL v3
+
+# Core dependencies
+openai>=1.12.0
+pyyaml>=6.0
+
+# Optional: for testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

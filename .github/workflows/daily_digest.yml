@@ -1,0 +1,77 @@
+name: Daily arXiv Digest
+
+# Schedule and trigger options
+on:
+  schedule:
+    # Run at 9 AM UTC every day (adjust to your timezone)
+    # Use https://crontab.guru/ to customize the schedule
+    - cron: '0 9 * * *'
+  
+  # Allow manual triggering from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate-digest:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip'  # Cache pip dependencies for faster runs
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run arXiv digest
+      env:
+        # Pass secrets as environment variables
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      run: |
+        cd src
+        python main.py
+    
+    - name: Upload digest as artifact
+      uses: actions/upload-artifact@v3
+      if: always()  # Upload even if previous steps had warnings
+      with:
+        name: daily-digest-${{ github.run_number }}
+        path: daily_digest.txt
+        retention-days: 30  # Keep for 30 days
+    
+    - name: Create issue with results (optional)
+      if: false  # Set to 'true' to enable
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const digest = fs.readFileSync('daily_digest.txt', 'utf8');
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `arXiv Digest - ${new Date().toISOString().split('T')[0]}`,
+            body: '```\n' + digest + '\n```'
+          });
+    
+    # Optional: Commit results back to repository
+    - name: Commit digest to repository (optional)
+      if: false  # Set to 'true' to enable
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        mkdir -p digests
+        cp daily_digest.txt digests/digest-$(date +%Y-%m-%d).txt
+        git add digests/
+        git commit -m "Add digest for $(date +%Y-%m-%d)" || echo "No changes"
+        git push

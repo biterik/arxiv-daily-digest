@@ -1,0 +1,249 @@
+# arXiv Daily Digest - LLM Continuity File
+
+## Project Description
+A Python tool that automatically monitors arXiv for new papers matching user-defined keywords in materials science (cond-mat.mtrl-sci), generates AI-powered summaries using OpenAI's GPT-4o-mini, and delivers daily digests via email and text file. Fully automated execution via GitHub Actions running daily at 6 AM UTC.
+
+## Architecture Overview
+- **arxiv_fetcher.py**: Interfaces with arXiv API, constructs Boolean search queries from keyword lists, filters papers by date (72-hour window) and category
+- **summarizer.py**: Uses OpenAI API (gpt-4o-mini) to generate concise 2-3 sentence summaries of academic papers
+- **notifier.py**: Formats output as text files AND sends email notifications via SMTP with comprehensive debug logging
+- **main.py**: Orchestrates the complete workflow from fetch to output, handles config file path resolution for running from any directory
+- **config.yml**: Central configuration for keywords (dislocation, fracture, crack, grain boundaries with MD/atomistic simulation), categories, API settings, and email recipient (e.bitzek@mpie.de)
+- **test_email.py**: Standalone email testing utility with detailed SMTP debugging
+
+## Function Registry
+
+### arxiv_fetcher.py
+**Class: ArxivFetcher**
+- Location: src/arxiv_fetcher.py
+- Purpose: Fetch and filter papers from arXiv API
+
+**Method: __init__(categories: List[str], time_window_hours: int, max_results: int)**
+- Parameters: 
+  - categories: arXiv category codes (e.g., 'cond-mat.mtrl-sci')
+  - time_window_hours: Hours to look back for papers (currently 72)
+  - max_results: Maximum papers to retrieve (default 100)
+- Returns: None (initializes instance)
+- Note: Uses timezone-aware datetime (UTC) for cutoff_date comparison
+
+**Method: build_query(keyword_groups: List[List[str]]) -> str**
+- Parameters: keyword_groups: Nested lists for Boolean logic [[AND terms], [AND terms]] = OR
+- Returns: arXiv API query string
+- Purpose: Converts keyword lists into arXiv search syntax
+
+**Method: fetch_papers(keyword_groups: List[List[str]]) -> List[Dict]**
+- Parameters: keyword_groups: Keywords for search
+- Returns: List of paper dictionaries with keys: id, title, authors, abstract, published, updated, pdf_url, arxiv_url
+- Purpose: Main method to retrieve papers from arXiv, filters by cutoff_date
+
+### summarizer.py
+**Class: PaperSummarizer**
+- Location: src/summarizer.py
+- Purpose: Generate AI summaries using OpenAI API
+
+**Method: __init__(model: str, max_tokens: int, temperature: float)**
+- Parameters:
+  - model: OpenAI model name (configured as 'gpt-4o-mini')
+  - max_tokens: Summary length limit (150)
+  - temperature: Sampling temperature 0-1 (0.3 for focused output)
+- Returns: None (initializes OpenAI client)
+- Raises: ValueError if OPENAI_API_KEY environment variable not set
+
+**Method: summarize_paper(paper: Dict) -> Optional[str]**
+- Parameters: paper: Dictionary with title, abstract, authors
+- Returns: AI-generated summary string or None on error
+- Purpose: Generate summary for single paper with materials science context
+
+**Method: summarize_papers(papers: List[Dict], show_progress: bool) -> List[Dict]**
+- Parameters: 
+  - papers: List of paper dictionaries
+  - show_progress: Print progress updates (default True)
+- Returns: Papers list with added 'summary' field
+- Purpose: Batch summarize multiple papers
+
+### notifier.py
+**Class: DigestNotifier**
+- Location: src/notifier.py
+- Purpose: Format and output digest to file and/or email
+
+**Method: __init__(output_format: str, output_file: str, include_abstract: bool)**
+- Parameters:
+  - output_format: 'text', 'email', or 'both' (currently 'both')
+  - output_file: Path for text output
+  - include_abstract: Include full abstracts in output (currently False)
+- Returns: None (initializes instance)
+
+**Method: format_digest(papers: List[Dict], date: Optional[datetime]) -> str**
+- Parameters: papers: List with summaries, date: Digest date
+- Returns: Formatted digest as string with URLs, summaries, metadata
+- Purpose: Convert papers to readable format with headers and formatting
+
+**Method: save_to_file(content: str) -> None**
+- Parameters: content: Formatted digest text
+- Returns: None (saves to file)
+- Purpose: Write digest to text file
+
+**Method: send_email(content: str, recipient: str, subject: str) -> bool**
+- Parameters: content, recipient email, subject line
+- Returns: True if successful, False otherwise
+- Purpose: Send digest via SMTP with comprehensive debug output
+- Features: Detailed SMTP debugging with set_debuglevel(1), specific error handling for authentication/connection issues, helpful error messages with fixes
+
+**Method: output_digest(papers: List[Dict], email_recipient: Optional[str]) -> None**
+- Parameters: papers with summaries, optional recipient
+- Returns: None (outputs based on config)
+- Purpose: Main output method that calls both save_to_file and send_email
+
+### main.py
+**Function: load_config(config_path: str) -> Dict[str, Any]**
+- Location: src/main.py
+- Parameters: config_path: Path to YAML config file (default 'config.yml')
+- Returns: Configuration dictionary
+- Purpose: Load and parse configuration, automatically looks in project root (parent of src/) for relative paths
+- Features: Smart path resolution for running from any directory
+
+**Function: run_digest(config_path: str, dry_run: bool) -> None**
+- Parameters: config file path, dry_run flag
+- Returns: None (executes workflow)
+- Purpose: Main orchestration function - fetches, summarizes, outputs
+- Features: Handles missing API key gracefully, provides helpful error messages, resolves output file paths relative to project root
+
+**Function: main() -> None**
+- Parameters: None (uses argparse for CLI)
+- Returns: None
+- Purpose: CLI entry point with argument parsing (--config, --dry-run)
+
+### test_email.py
+**Function: test_email() -> bool**
+- Location: src/test_email.py
+- Parameters: None (reads from environment variables)
+- Returns: True if email sent successfully, False otherwise
+- Purpose: Standalone email testing utility
+- Features: Comprehensive SMTP debugging, detailed error messages with solutions, step-by-step connection logging
+
+## Current Configuration
+
+### Keywords (config.yml)
+- dislocation + molecular dynamics
+- dislocation + atomistic simulation
+- fracture + molecular dynamics
+- fracture + atomistic simulation
+- crack + molecular dynamics
+- crack + atomistic simulation
+- grain boundary + molecular dynamics
+- grain boundary + atomistic simulation
+- grain boundaries + molecular dynamics
+- grain boundaries + atomistic simulation
+
+### Settings
+- Category: cond-mat.mtrl-sci
+- Time window: 72 hours (3 days)
+- Max results: 100 papers
+- OpenAI model: gpt-4o-mini
+- Temperature: 0.3
+- Max tokens: 150
+- Output format: both (text + email)
+- Output file: daily_digest.txt
+- Email recipient: e.bitzek@mpie.de
+- Email enabled: Yes
+
+### GitHub Actions Schedule
+- Runs daily at 6 AM UTC (8 AM CEST / 7 AM CET)
+- Manual trigger available via workflow_dispatch
+- Artifacts retained for 30 days
+
+## Current Status
+**Phase 1 Complete**: Core functionality fully implemented and tested
+- ✅ arXiv API integration with Boolean keyword search
+- ✅ Timezone-aware date filtering (fixed datetime comparison bug)
+- ✅ OpenAI summarization (gpt-4o-mini)
+- ✅ Text file output
+- ✅ Email notification with SMTP debugging
+- ✅ Configuration system
+- ✅ Error handling and comprehensive debug output
+- ✅ Path resolution for running from any directory
+- ✅ Email testing utility
+
+**Phase 2 Ready**: GitHub Actions automation configured
+- ✅ Daily workflow schedule (6 AM UTC)
+- ✅ Workflow file created (.github/workflows/daily_digest.yml)
+- ✅ Environment variables documented
+- ⏳ Needs GitHub secrets configuration (OPENAI_API_KEY, SMTP credentials)
+- ⏳ Needs repository push and first run test
+
+**Phase 3 Future**: Potential enhancements
+- ⏳ Unit tests for all modules
+- ⏳ HTML email formatting
+- ⏳ Multiple output channels (Slack, Discord)
+- ⏳ Weekly summary reports
+- ⏳ Multiple keyword profiles
+- ⏳ Additional arXiv categories
+
+## Known Issues & Fixes Applied
+1. **Timezone comparison error** - Fixed by importing timezone and using datetime.now(timezone.utc)
+2. **Config file path** - Fixed by implementing smart path resolution in load_config()
+3. **Email debugging** - Added comprehensive SMTP debug output with set_debuglevel(1)
+4. **Output file path** - Made relative to project root regardless of execution directory
+
+## Environment Variables Required
+- `OPENAI_API_KEY`: OpenAI API key for GPT-4o-mini
+- `SMTP_SERVER`: SMTP server (e.g., smtp.gmail.com)
+- `SMTP_PORT`: SMTP port (typically 587 for TLS)
+- `SMTP_USER`: Email address for sending
+- `SMTP_PASSWORD`: App password (NOT regular password for Gmail)
+
+## Testing Commands
+```bash
+# Test arXiv fetcher only (no API key needed)
+cd src
+python -c "from arxiv_fetcher import test_fetcher; test_fetcher()"
+
+# Test email configuration
+python test_email.py
+
+# Dry run (fetch and summarize but don't save)
+python main.py --dry-run
+
+# Full run (saves file and sends email)
+python main.py
+```
+
+## Next Steps
+1. Push to GitHub repository
+2. Add secrets to GitHub Actions (5 secrets: OPENAI_API_KEY, SMTP_SERVER, SMTP_PORT, SMTP_USER, SMTP_PASSWORD)
+3. Manually trigger workflow to test
+4. Monitor first automated daily run
+5. Adjust keywords based on initial results
+6. Consider adding more arXiv categories if needed
+
+## Dependencies
+- Python 3.9+
+- openai >= 1.12.0
+- pyyaml >= 6.0
+- pytest >= 7.4.0 (testing)
+
+## File Structure
+```
+ArXiv-Daily-Digest/
+├── .github/workflows/daily_digest.yml
+├── .gitignore
+├── LICENSE.txt
+├── README.md
+├── SETUP_GUIDE.md
+├── config.yml
+├── environment.yml
+├── llm.txt
+├── quick_start.sh
+├── requirements.txt
+├── src/
+│   ├── __init__.py
+│   ├── arxiv_fetcher.py
+│   ├── main.py
+│   ├── notifier.py
+│   ├── summarizer.py
+│   └── test_email.py
+└── tests/
+    └── test_arxiv_fetcher.py
+```
+
+Last updated: 2025-10-05 18:45 UTC

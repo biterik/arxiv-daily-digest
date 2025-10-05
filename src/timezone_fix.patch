@@ -1,0 +1,21 @@
+--- a/src/arxiv_fetcher.py
++++ b/src/arxiv_fetcher.py
+@@ -8,7 +8,7 @@ specified keywords and categories.
+ import urllib.request
+ import urllib.parse
+ import xml.etree.ElementTree as ET
+-from datetime import datetime, timedelta
++from datetime import datetime, timedelta, timezone
+ from typing import List, Dict, Optional
+ import time
+ 
+@@ -28,7 +28,8 @@ class ArxivFetcher:
+         self.categories = categories
+         self.time_window_hours = time_window_hours
+         self.max_results = max_results
+-        self.cutoff_date = datetime.now() - timedelta(hours=time_window_hours)
++        # Make cutoff_date timezone-aware (UTC)
++        self.cutoff_date = datetime.now(timezone.utc) - timedelta(hours=time_window_hours)
+     
+     def build_query(self, keyword_groups: List[List[str]]) -> str:
+         """

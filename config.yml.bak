@@ -1,0 +1,53 @@
+# arXiv Daily Digest Configuration
+# Copyright (c) 2025 Erik Bitzek
+# Licensed under GNU AGPL v3
+
+# arXiv search settings
+arxiv:
+  # Categories to search (can be multiple)
+  categories:
+    - cond-mat.mtrl-sci
+  
+  # Time window in hours (24 = last day)
+  time_window_hours: 24
+  
+  # Maximum results to retrieve
+  max_results: 100
+
+# Keywords with Boolean logic
+# Each entry is processed as: (keyword1 AND keyword2) OR (keyword3)
+# Use lists for AND logic, separate entries for OR logic
+keywords:
+  - ["dislocation", "molecular dynamics"]
+  - ["atomistic simulation"]
+  - ["crystal plasticity"]
+  # Add more keyword combinations here
+
+# OpenAI settings
+openai:
+  # Model to use for summaries
+  model: "gpt-4o-mini"  # Cost-effective for summaries
+  
+  # Maximum tokens for each summary
+  max_tokens: 150
+  
+  # Temperature (0 = deterministic, 1 = creative)
+  temperature: 0.3
+
+# Output settings
+output:
+  # Format: 'text', 'email', or 'both'
+  format: 'text'
+  
+  # Output file path (for text format)
+  output_file: 'daily_digest.txt'
+  
+  # Include abstract in output (in addition to AI summary)
+  include_abstract: false
+
+# Email settings (optional, for Phase 2)
+email:
+  enabled: false
+  # SMTP server settings will be stored as environment variables
+  recipient: "your.email@example.com"
+  subject: "arXiv Daily Digest - {date}"
