@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
         cache: 'pip'  # Cache pip dependencies for faster runs
@@ -42,7 +42,7 @@ jobs:
         python main.py
     
     - name: Upload digest as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()  # Upload even if previous steps had warnings
       with:
         name: daily-digest-${{ github.run_number }}
