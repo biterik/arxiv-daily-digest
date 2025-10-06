@@ -9,7 +9,7 @@ arxiv:
     - cond-mat.mtrl-sci
   
   # Time window in hours (168 = last 7 days, 72 = last 3 days, 24 = last day)
-  time_window_hours: 168
+  time_window_hours: 48
   
   # Maximum results to retrieve
   max_results: 100
@@ -28,7 +28,12 @@ keywords:
   - ["grain boundary", "atomistic simulation"]
   - ["grain boundaries", "molecular dynamics"]
   - ["grain boundaries", "atomistic simulation"]
-
+  - ["Hydrogen", "dislocation"]
+  - ["Hydrogen", "grain boundary"]
+  - ["Hydrogen", "crack"]
+  - ["Hydrogen", "fracture"]
+  - ["Hydrogen embrittlement"]
+  - ["Hydrogen", "MD"]
 # OpenAI settings
 openai:
   # Model to use for summaries

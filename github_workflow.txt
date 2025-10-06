@@ -3,9 +3,8 @@ name: Daily arXiv Digest
 # Schedule and trigger options
 on:
   schedule:
-    # Run at 9 AM UTC every day (adjust to your timezone)
-    # Use https://crontab.guru/ to customize the schedule
-    - cron: '0 4 * * *'
+    # Run at 6 AM UTC every day (8 AM CEST in summer, 7 AM CET in winter)
+    - cron: '0 6 * * *'
   
   # Allow manual triggering from GitHub Actions tab
   workflow_dispatch:
@@ -19,7 +18,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
         python-version: '3.9'
         cache: 'pip'  # Cache pip dependencies for faster runs
