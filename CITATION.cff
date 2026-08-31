@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "arxiv-daily-digest"
+type: software
+authors:
+  - family-names: Bitzek
+    given-names: Erik
+    email: e.bitzek@mpi-susmat.de
+    orcid: "https://orcid.org/0000-0001-7430-3694"
+    affiliation: >-
+      Department of Materials Science, WW8-Materials Simulation,
+      Friedrich-Alexander-Universität Erlangen-Nürnberg,
+      Dr.-Mack-Straße 77, 90762 Fürth, Germany
+abstract: >-
+  Automated daily monitoring of arXiv preprints for materials science:
+  a scheduled GitHub Action that queries selected arXiv categories with
+  boolean keyword logic, generates concise AI summaries of the matching
+  papers with OpenAI language models, and delivers the digest as a text
+  report or email notification. Keeps literature screening reproducible
+  and configuration-driven, with zero infrastructure beyond the
+  repository itself.
+  Funded by the Deutsche Forschungsgemeinschaft (DFG, German Research
+  Foundation) under the National Research Data Infrastructure –
+  NFDI 38/1 – project number 460247524 (NFDI-MatWerk consortium).
+license: AGPL-3.0-or-later
+repository-code: "https://github.com/biterik/arxiv-daily-digest"
+url: "https://github.com/biterik/arxiv-daily-digest"
+version: 1.0.0
+date-released: "2025-10-05"
+keywords:
+  - arxiv
+  - literature-monitoring
+  - research-software-engineering
+  - software-sustainability
+  - materials-science
+  - nfdi-matwerk
