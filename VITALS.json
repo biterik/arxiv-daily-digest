@@ -7,11 +7,11 @@
     "prs_merged_30d": 0,
     "prs_opened_30d": 0
   },
-  "collected_at": "2026-10-12T10:56:27Z",
-  "date": "2026-10-12",
+  "collected_at": "2026-10-13T10:41:07Z",
+  "date": "2026-10-13",
   "derived": {
     "clones_last_30d": 276,
-    "clones_last_7d": 63,
+    "clones_last_7d": 50,
     "downloads_gained_30d": 0,
     "downloads_total": 0,
     "funnel_30d": {
@@ -20,13 +20,13 @@
       "unique_cloners": 190,
       "unique_visitors": 13
     },
-    "history_days": 111,
+    "history_days": 112,
     "per_30d": {
-      "clones": 148.9,
+      "clones": 148.1,
       "downloads_gained": 0.0,
       "stars_gained": 0.3,
-      "unique_cloners": 104.5,
-      "unique_visitors": 6.3,
+      "unique_cloners": 104.1,
+      "unique_visitors": 6.2,
       "views": 6.5
     },
     "repo_created_at": "2025-10-05T19:34:00Z",
@@ -40,18 +40,18 @@
     "stars_gained_7d": 0,
     "stars_now": 1,
     "totals": {
-      "clones": 546,
+      "clones": 548,
       "downloads_gained": 0,
       "stars_gained": 1,
-      "unique_cloners": 383,
+      "unique_cloners": 385,
       "unique_visitors": 23,
       "views": 24
     },
-    "tracking_days": 110,
+    "tracking_days": 111,
     "tracking_since": "2026-06-25",
     "views_last_30d": 13,
-    "views_last_7d": 3,
-    "views_prev_7d": 4,
+    "views_last_7d": 2,
+    "views_prev_7d": 5,
     "windows": {
       "30d": {
         "clones": 276,
@@ -61,7 +61,7 @@
         "views": 13
       },
       "365d": {
-        "clones": 546,
+        "clones": 548,
         "downloads_gained": 0,
         "stars_gained": 0,
         "unique_visitors": 23,
@@ -83,8 +83,8 @@
     "default_branch": "main",
     "fork": false,
     "open_issues": 0,
-    "pushed_at": "2026-10-11T10:04:20Z",
-    "size_kb": 147
+    "pushed_at": "2026-10-12T10:56:32Z",
+    "size_kb": 149
   },
   "popularity": {
     "forks": 0,
@@ -97,10 +97,6 @@
   "schema_version": 1,
   "traffic": {
     "clones": {
-      "2026-09-28": {
-        "count": 16,
-        "uniques": 11
-      },
       "2026-09-29": {
         "count": 2,
         "uniques": 2
@@ -152,6 +148,10 @@
       "2026-10-11": {
         "count": 9,
         "uniques": 6
+      },
+      "2026-10-12": {
+        "count": 2,
+        "uniques": 2
       }
     },
     "paths": [
@@ -194,10 +194,6 @@
       }
     ],
     "views": {
-      "2026-09-28": {
-        "count": 0,
-        "uniques": 0
-      },
       "2026-09-29": {
         "count": 0,
         "uniques": 0
@@ -247,6 +243,10 @@
         "uniques": 0
       },
       "2026-10-11": {
+        "count": 0,
+        "uniques": 0
+      },
+      "2026-10-12": {
         "count": 0,
         "uniques": 0
       }
