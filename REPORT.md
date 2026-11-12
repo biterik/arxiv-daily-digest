@@ -1,12 +1,12 @@
 # biterik/arxiv-daily-digest — repo vitals
 
 ![stars](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbiterik%2Farxiv-daily-digest%2Fvitals%2Fbadge%2Fstars.json) ![views/week](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbiterik%2Farxiv-daily-digest%2Fvitals%2Fbadge%2Fviews-week.json) 
-_Updated 2026-11-11T11:03:32Z (UTC) · machine-readable: [VITALS.json](VITALS.json) · full history: [history.ndjson](history.ndjson) · daily snapshots: [snapshots/](snapshots/)_
+_Updated 2026-11-12T11:21:43Z (UTC) · machine-readable: [VITALS.json](VITALS.json) · full history: [history.ndjson](history.ndjson) · daily snapshots: [snapshots/](snapshots/)_
 
 | | |
 |---|---|
 | Repository created | 2025-10-05 |
-| Tracked by repo-vitals since | 2026-06-25 (140 days)³ |
+| Tracked by repo-vitals since | 2026-06-25 (141 days)³ |
 
 
 ## Summary
@@ -15,7 +15,7 @@ _Updated 2026-11-11T11:03:32Z (UTC) · machine-readable: [VITALS.json](VITALS.js
 |---|---:|---:|---:|
 | Views | 22 | 45 | 46 |
 | Unique visitors¹ | 22 | 44 | 45 |
-| Clones | 222 | 638 | 770 |
+| Clones | 235 | 639 | 784 |
 | Stars gained | 0 | 0 | 0 |
 | Release downloads gained | 0 | 0 | 0 |
 
@@ -23,14 +23,14 @@ _Updated 2026-11-11T11:03:32Z (UTC) · machine-readable: [VITALS.json](VITALS.js
 
 ## Since tracking began
 
-Everything recorded so far, from 2026-06-25 (140 days) — the total, and the same total expressed as an average rate.
+Everything recorded so far, from 2026-06-25 (141 days) — the total, and the same total expressed as an average rate.
 
 | Metric | Total | Average / 30 d |
 |---|---:|---:|
-| Views | 46 | 9.9 |
+| Views | 46 | 9.8 |
 | Unique visitors¹ | 45 | 9.6 |
-| Clones | 770 | 165.0 |
-| Unique cloners¹ | 527 | 112.9 |
+| Clones | 784 | 166.8 |
+| Unique cloners¹ | 535 | 113.8 |
 | Stars gained | 1 | 0.2 |
 | Release downloads gained | 0 | 0.0 |
 
@@ -39,14 +39,14 @@ Averages are the total divided by days tracked, times 30 — not a projection.
 ## Trends — last 30 days
 
 ```
-views  ▁▃▁▁▁▁▁▁▁▁▁▃▃▆▁▅▆▃▃▁█▃▃▁▃▁▁▃▃·  (22 total)
-clones ▁▅▄▁▅▁▂▁▁█▂▅▄▁▁▂▅▆▁▁▁▇▄▁▆▆▂▆▇·  (222 total)
+views  ▃▁▁▁▁▁▁▁▁▁▃▃▆▁▅▆▃▃▁█▃▃▁▃▁▁▃▃▁·  (22 total)
+clones ▅▄▁▅▁▂▁▁█▂▅▄▁▁▂▅▆▁▁▁▇▄▁▆▆▂▆▇▆·  (235 total)
 ```
 
 ('·' = day without data)
 
 Stars: **1** (+0 in 30 d, +0 in 7 d)
-**Conversion funnel (30 d):** 22 unique visitors → 142 unique cloners → 0 stars gained → 0 downloads gained
+**Conversion funnel (30 d):** 22 unique visitors → 149 unique cloners → 0 stars gained → 0 downloads gained
 
 ## Where visitors come from (14-day window)
 
@@ -59,7 +59,6 @@ Stars: **1** (+0 in 30 d, +0 in 7 d)
 | `/biterik/arxiv-daily-digest` | 6 | 6 |
 | `/biterik/arxiv-daily-digest/blob/main/SETUP_GUIDE.md` | 3 | 3 |
 | `/biterik/arxiv-daily-digest/blob/main/requirements.txt` | 3 | 3 |
-| `/biterik/arxiv-daily-digest/blob/main/LICENSE.txt` | 2 | 2 |
 | `/biterik/arxiv-daily-digest/blob/main/github_workflow.txt` | 1 | 1 |
 | `/biterik/arxiv-daily-digest/blob/main/llm.txt` | 1 | 1 |
 
@@ -87,7 +86,7 @@ Interactive dashboard: [index.html](index.html) on this branch (raw URLs don't
 render HTML — view it via GitHub Pages on the vitals branch, the repo-vitals
 hub, or locally: `git clone -b vitals … && python -m http.server`).
 A copy of this report named with the repo and today's date lives at
-[reports/biterik-arxiv-daily-digest-2026-11-11.md](reports/biterik-arxiv-daily-digest-2026-11-11.md)
+[reports/biterik-arxiv-daily-digest-2026-11-12.md](reports/biterik-arxiv-daily-digest-2026-11-12.md)
 — safe to download standalone.
 
 <sub>[repo-vitals](https://github.com/biterik/repo-vitals) by Erik Bitzek —
