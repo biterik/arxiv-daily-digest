@@ -7,27 +7,27 @@
     "prs_merged_30d": 0,
     "prs_opened_30d": 0
   },
-  "collected_at": "2026-11-21T11:11:19Z",
-  "date": "2026-11-21",
+  "collected_at": "2026-11-22T11:30:58Z",
+  "date": "2026-11-22",
   "derived": {
-    "clones_last_30d": 220,
+    "clones_last_30d": 218,
     "clones_last_7d": 21,
     "downloads_gained_30d": 0,
     "downloads_total": 0,
     "funnel_30d": {
       "downloads_gained": 0,
       "stars_gained": 0,
-      "unique_cloners": 139,
-      "unique_visitors": 23
+      "unique_cloners": 137,
+      "unique_visitors": 24
     },
-    "history_days": 151,
+    "history_days": 152,
     "per_30d": {
-      "clones": 167.0,
+      "clones": 166.3,
       "downloads_gained": 0.0,
       "stars_gained": 0.2,
-      "unique_cloners": 113.8,
-      "unique_visitors": 9.4,
-      "views": 9.6
+      "unique_cloners": 113.4,
+      "unique_visitors": 9.5,
+      "views": 9.7
     },
     "repo_created_at": "2025-10-05T19:34:00Z",
     "star_forecast": {
@@ -40,39 +40,39 @@
     "stars_gained_7d": 0,
     "stars_now": 1,
     "totals": {
-      "clones": 835,
+      "clones": 837,
       "downloads_gained": 0,
       "stars_gained": 1,
-      "unique_cloners": 569,
-      "unique_visitors": 47,
-      "views": 48
+      "unique_cloners": 571,
+      "unique_visitors": 48,
+      "views": 49
     },
-    "tracking_days": 150,
+    "tracking_days": 151,
     "tracking_since": "2026-06-25",
-    "views_last_30d": 23,
-    "views_last_7d": 2,
+    "views_last_30d": 24,
+    "views_last_7d": 3,
     "views_prev_7d": 2,
     "windows": {
       "30d": {
-        "clones": 220,
+        "clones": 218,
         "downloads_gained": 0,
         "stars_gained": 0,
-        "unique_visitors": 23,
-        "views": 23
+        "unique_visitors": 24,
+        "views": 24
       },
       "365d": {
-        "clones": 835,
+        "clones": 837,
         "downloads_gained": 0,
         "stars_gained": 0,
-        "unique_visitors": 47,
-        "views": 48
+        "unique_visitors": 48,
+        "views": 49
       },
       "90d": {
-        "clones": 646,
+        "clones": 647,
         "downloads_gained": 0,
         "stars_gained": 0,
-        "unique_visitors": 44,
-        "views": 45
+        "unique_visitors": 45,
+        "views": 46
       }
     }
   },
@@ -83,8 +83,8 @@
     "default_branch": "main",
     "fork": false,
     "open_issues": 0,
-    "pushed_at": "2026-11-20T11:46:14Z",
-    "size_kb": 203
+    "pushed_at": "2026-11-21T11:11:22Z",
+    "size_kb": 205
   },
   "popularity": {
     "forks": 0,
@@ -97,10 +97,6 @@
   "schema_version": 1,
   "traffic": {
     "clones": {
-      "2026-11-07": {
-        "count": 14,
-        "uniques": 8
-      },
       "2026-11-08": {
         "count": 5,
         "uniques": 4
@@ -152,6 +148,10 @@
       "2026-11-20": {
         "count": 1,
         "uniques": 1
+      },
+      "2026-11-21": {
+        "count": 2,
+        "uniques": 2
       }
     },
     "paths": [
@@ -167,16 +167,17 @@
       },
       {
         "count": 1,
+        "path": "/biterik/arxiv-daily-digest/blob/main/SETUP_GUIDE.md",
+        "uniques": 1
+      },
+      {
+        "count": 1,
         "path": "/biterik/arxiv-daily-digest/blob/main/docs/github-actions.md",
         "uniques": 1
       }
     ],
     "referrers": [],
     "views": {
-      "2026-11-07": {
-        "count": 0,
-        "uniques": 0
-      },
       "2026-11-08": {
         "count": 0,
         "uniques": 0
@@ -228,6 +229,10 @@
       "2026-11-20": {
         "count": 0,
         "uniques": 0
+      },
+      "2026-11-21": {
+        "count": 1,
+        "uniques": 1
       }
     }
   }
